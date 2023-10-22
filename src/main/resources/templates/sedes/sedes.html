@@ -27,7 +27,7 @@
 							<td th:text="${sede.id}"></td>
 							<td th:text="${sede.nombre}"></td>
 							<td th:text="${sede.numero_complejos}"></td>
-							<td><a th:href="@{sedes/crear/} + ${sede.id}" th:text="Editar" class="btn btn-warning" style="color: white"></a></td>
+							<td><a th:href="@{sedes/editar/} + ${sede.id}" th:text="Editar" class="btn btn-warning" style="color: white"></a></td>
 							<td><a th:href="@{sedes/eliminar/} + ${sede.id}" th:text="Eliminar" class="btn btn-danger" onclick="return confirm('¿Estás seguro que quieres eliminar la sede?');" style="color: white"></a></td>
 						</tr>
 					</tbody>

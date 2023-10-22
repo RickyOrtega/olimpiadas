@@ -47,7 +47,6 @@ public class SedesController{
 
 		model.addAttribute("titulo", "Formulario de Sede");
 		model.addAttribute("sede", new Sede());
-
 		return "sedes/guardar";
 	}
 
@@ -58,9 +57,37 @@ public class SedesController{
 		sede.setNombre(nombre);
 		sede.setNumero_complejos(numero_complejos);
 
+		logger.info("1. Guardando sede id: " + id);
+
 		sedesService.guardar(sede, id);
 
 		logger.info("Sede guardada con éxito");
+
+		return "redirect:/sedes";
+	}
+	@GetMapping("/editar/{id}")
+	public String editarSede(Model model, @PathVariable(value = "id") Long id){
+
+		logger.info("Editando sede con id: " + id);
+
+		model.addAttribute("titulo", "Formulario de Sedes");
+		model.addAttribute("sede", sedesService.buscarPorId(id));
+
+		return "sedes/actualizar";
+	}
+
+	@GetMapping("/actualizar/{id}")
+	public String actualizarSede(Model model, @PathVariable Long id, @RequestParam String nombre, @RequestParam int numero_complejos){
+
+		Sede sede = sedesService.buscarPorId(id);
+		sede.setNombre(nombre);
+		sede.setNumero_complejos(numero_complejos);
+
+		logger.info("1. Actualizando sede id: " + id);
+
+		sedesService.guardar(sede, id);
+
+		logger.info("Sede actualizada con éxito");
 
 		return "redirect:/sedes";
 	}

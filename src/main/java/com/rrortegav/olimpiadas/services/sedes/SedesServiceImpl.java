@@ -30,7 +30,7 @@ public class SedesServiceImpl implements ISedesService {
 	@Override
 	public void guardar(Sede sede, Long id) {
 
-		logger.info("Guardando sede: " + sede.toString());
+		logger.info("Guardando sede: " + id);
 
 		if(id != null && id != 0){
 			logger.info("Actualizando sede con id: " + id);

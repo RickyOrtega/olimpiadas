@@ -8,7 +8,7 @@
 <div class="container">
 	<section th:replace="~{layout/layout :: titulo}"></section>
 	<div class="row">
-		<form th:action="@{/sedes/crear}" th:object="${sede}" method="get">
+		<form th:action="@{/sedes/actualizar/} + ${sede.id}" th:object="${sede}" method="get">
 			<div class="form-group row">
 				<label for="id" class="col-sm-4 col-form-label">Id</label>
 				<div class="col-sm-8">
