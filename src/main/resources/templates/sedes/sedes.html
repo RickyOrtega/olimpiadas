@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/layout :: head}">
+</head>
+<body>
+<header th:replace="~{layout/layout :: header}"></header>
+<div class="container">
+	<section th:replace="~{layout/layout :: titulo}"></section>
+	<div class="row">
+		<div class="col-md-12">
+			<div th:if="${sedes.size()<1}">
+				<span>No hay sedes registradas</span>
+			</div>
+			<div th:if="${sedes.size()>=1}">
+				<table class="table table-bordered table-striped">
+					<thead>
+					<tr>
+						<th>Id</th>
+						<th>Nombre</th>
+						<th>N° Complejos</th>
+						<th>Eliminar</th>
+						<th>Editar</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr th:each="sede: ${sedes}">
+							<td th:text="${sede.id}"></td>
+							<td th:text="${sede.nombre}"></td>
+							<td th:text="${sede.numero_complejos}"></td>
+							<td><a th:href="@{sedes/crear/} + ${sede.id}" th:text="Editar" class="btn btn-warning" style="color: white"></a></td>
+							<td><a th:href="@{sedes/eliminar/} + ${sede.id}" th:text="Eliminar" class="btn btn-danger" onclick="return confirm('¿Estás seguro que quieres eliminar la sede?');" style="color: white"></a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
