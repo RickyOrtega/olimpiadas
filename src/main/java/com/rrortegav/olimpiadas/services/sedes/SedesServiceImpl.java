@@ -13,18 +13,19 @@ import java.util.List;
 public class SedesServiceImpl implements ISedesService {
 
 	@Autowired
-	private SedeRepository sedeRepository;
+	private SedeRepository localSedeRepository;
 
-	private Logger logger = LoggerFactory.getLogger(SedesServiceImpl.class);
+
+	private final Logger logger = LoggerFactory.getLogger(SedesServiceImpl.class);
 
 	@Override
 	public List<Sede> listarSedes() {
-		return this.sedeRepository.findAll();
+		return this.localSedeRepository.findAll();
 	}
 
 	@Override
 	public Sede buscarPorId(Long id) {
-		return this.sedeRepository.findById(id).orElse(null);
+		return this.localSedeRepository.findById(id).orElse(null);
 	}
 
 	@Override
@@ -39,7 +40,7 @@ public class SedesServiceImpl implements ISedesService {
 			logger.info("Guardando nueva sede");
 		}
 
-		this.sedeRepository.save(sede);
+		this.localSedeRepository.save(sede);
 	}
 
 	@Override
@@ -47,8 +48,8 @@ public class SedesServiceImpl implements ISedesService {
 
 		logger.info("Eliminando sede con id: " + id);
 
-		if(this.sedeRepository.existsById(id))
-			this.sedeRepository.deleteById(id);
+		if(this.localSedeRepository.existsById(id))
+			this.localSedeRepository.deleteById(id);
 		else
 			return false;
 		return true;
